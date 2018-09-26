@@ -40,9 +40,9 @@ public:
                 cur->next = NULL;
             return head;
         }
-        catch (int e) {
-            cerr << "Encountered exception.\n";
-            exit(1);
+        catch (const exception &exc) {
+            // catch anything thrown within try block that derives from std::exception
+            cerr << exc.what();
         }
     }
 };
