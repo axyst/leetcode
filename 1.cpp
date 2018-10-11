@@ -16,9 +16,8 @@ public:
             }
             throw 1;
         }
-        catch (int e) {
-            cerr << "Encountered exception.\n";
-            exit(1);
+        catch (const exception &exc) {
+            cerr << exc.what() << endl;
         }
     }
 };
