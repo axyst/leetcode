@@ -1,3 +1,4 @@
+// mine
 class Solution {
 public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
@@ -39,6 +40,29 @@ public:
             } else if (cur != nullptr) // end not empty
                 cur->next = nullptr;
             return head;
+        }
+        catch (const exception &exc) {
+            cerr << exc.what() << endl;
+        }
+    }
+};
+
+// simpler code
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        try {
+            int add = 0;
+            ListNode head(0), *cur = &head;
+            while(l1 != nullptr || l2 != nullptr || add){
+                int bef = (l1 != nullptr ? l1->val : 0) + (l2 != nullptr ? l2->val : 0) + add;
+                cur->next = new ListNode(bef % 10);
+                add = bef / 10;
+                l1 != nullptr ? l1 = l1->next : l1;
+                l2 != nullptr ? l2 = l2->next : l2;
+                cur = cur->next;
+            }
+            return head.next;
         }
         catch (const exception &exc) {
             cerr << exc.what() << endl;
