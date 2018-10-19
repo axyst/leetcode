@@ -15,7 +15,7 @@ public:
                     return (str[0] == '-') ? INT32_MIN : INT32_MAX;
                 ret = ret * 10 + bef;
             } else{
-                if(i==0) continue;
+                if(i == 0) continue;
                 break;
             }
 
