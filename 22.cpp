@@ -1,22 +1,32 @@
-// from solution
-class Solution {
+class Solution
+{
+    void backtrack(vector<string> &ans, string &cur, int open, int close, int n)
+    {
+        if (cur.size() == n * 2)
+        {
+            ans.push_back(cur);
+            return;
+        }
+        if (open < n)
+        {
+            cur.push_back('(');
+            backtrack(ans, cur, open + 1, close, n);
+            cur.pop_back();
+        }
+        if (close < open)
+        {
+            cur.push_back(')');
+            backtrack(ans, cur, open, close + 1, n);
+            cur.pop_back();
+        }
+    }
+
 public:
-    vector<string> generateParenthesis(int n) {
-        try {
-            vector<string> ret;
-            if (!n) ret.emplace_back("");
-            else
-                for (int i = 0; i < n; ++i) {
-                    for (const auto &left: generateParenthesis(i))
-                        for (const auto &right: generateParenthesis(n - 1 - i)) {
-                            string cur;cur += ("(");cur += left;cur += ")";cur += right;
-                            ret.emplace_back(cur);
-                        }
-                }
-            return ret;
-        }
-        catch (const exception &exc) {
-            cout << exc.what() << endl;
-        }
-    };
+    vector<string> generateParenthesis(int n)
+    {
+        vector<string> result;
+        string current;
+        backtrack(result, current, 0, 0, n);
+        return result;
+    }
 };

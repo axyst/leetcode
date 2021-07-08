@@ -1,5 +1,6 @@
 // 最高位保留，其它位是当前位和它的高一位进行异或操作 i = i ^ (i >> 1)
-class Solution {
+class Solution
+{
 public:
 	vector<int> grayCode(int n)
 	{

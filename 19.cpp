@@ -1,29 +1,54 @@
-class Solution {
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution
+{
 public:
-    ListNode *removeNthFromEnd(ListNode *head, int n) {
-        try {
-            int num = 0;
-            ListNode *test = head;
-            while (test != NULL) {
-                num++;
-                test = test->next;
-            }
-            ListNode *ret = new ListNode(0);
-            ListNode *rh = ret;
-            int cnt = 1;
-            while (head != NULL) {
-                if (cnt != num - n + 1) {
-                    ListNode *cur = new ListNode(head->val);
-                    ret->next = cur;
-                    ret = cur;
-                }
-                cnt++;
-                head = head->next;
-            }
-            return rh->next;
-        }
-        catch (const exception &exc) {
-            cout << exc.what() << endl;
-        }
-    };
+	ListNode *removeNthFromEnd(ListNode *head, int n)
+	{
+		ListNode *first = head;
+		ListNode *second = first;
+		ListNode *bef = first;
+		if (first->next == nullptr) return {};
+		int cnt = 1;
+		while (first->next != nullptr)
+		{
+			cnt++;
+			bef = first;
+			first = first->next;
+		}
+		if (n == 1)
+		{
+			bef->next = nullptr;
+			delete first;
+			return head;
+		}
+		first = head;
+		bef = first;
+		if (n == cnt)
+		{
+			head = first->next;
+			delete first;
+			return head;
+		}
+		for (int i = 0; i < n - 1; i++)
+			second = second->next;
+		while (second->next != nullptr)
+		{
+			bef = first;
+			first = first->next;
+			second = second->next;
+		}
+		bef->next = first->next;
+		first->next = nullptr;
+		delete first;
+		return head;
+	}
 };

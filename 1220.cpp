@@ -1,5 +1,6 @@
 // DP 数据大时上矩阵乘法
-class Solution {
+class Solution
+{
 public:
 	int countVowelPermutation(int n)
 	{

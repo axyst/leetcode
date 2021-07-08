@@ -1,23 +1,22 @@
-class Solution {
+class Solution
+{
 public:
-    vector<int> twoSum(vector<int> &nums, int target) {
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
         map<int, int> mp;
-        try {
-            vector<int> ret;
-            auto size = nums.size();
-            for (auto i = 0; i < size; ++i) {
-                auto ot = target - nums[i];
-                if (mp.count(ot)) {
-                    ret.emplace_back(i);
-                    ret.emplace_back(mp[ot]);
-                    return ret;
-                }
-                mp[nums[i]] = i;
+        vector<int> ret;
+        int size = nums.size();
+        for (int i = 0; i < size; ++i)
+        {
+            int ot = target - nums[i];
+            if (mp.count(ot))
+            {
+                ret.emplace_back(i);
+                ret.emplace_back(mp[ot]);
+                return ret;
             }
-            throw ("no solution");
+            mp[nums[i]] = i;
         }
-        catch (const exception &exc) {
-            cerr << exc.what() << endl;
-        }
+        return ret;
     }
 };
