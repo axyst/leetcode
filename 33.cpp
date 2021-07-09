@@ -1,3 +1,4 @@
+// 以n-1为界的两个有序数组 分两次二分
 class Solution
 {
 public:
@@ -5,39 +6,29 @@ public:
     {
         int i;
         int sz = nums.size() - 1;
-        if (sz < 0)
-            return -1;
+        if (sz < 0) return -1;
         for (i = 0; i < sz; ++i)
-            if (nums[i] > nums[i + 1])
-                break;
+            if (nums[i] > nums[i + 1]) break; // i = n - 1
         int left = 0, right = i, mid = 0;
         while (right - left >= 3)
         {
             mid = left + (right - left) / 2;
-            if (nums[mid] == target)
-                return mid;
-            if (nums[mid] < target)
-                left = mid;
-            else
-                right = mid;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] < target) left = mid;
+            else right = mid;
         }
         for (int k = left; k <= right; ++k)
-            if (nums[k] == target)
-                return k;
+            if (nums[k] == target) return k;
         left = i + 1, right = sz, mid = 0;
         while (right - left >= 3)
         {
             mid = left + (right - left) / 2;
-            if (nums[mid] == target)
-                return mid;
-            if (nums[mid] < target)
-                left = mid;
-            else
-                right = mid;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] < target) left = mid;
+            else right = mid;
         }
         for (int k = left; k <= right; ++k)
-            if (nums[k] == target)
-                return k;
+            if (nums[k] == target) return k;
         return -1;
     }
 };

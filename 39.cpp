@@ -5,10 +5,8 @@ public:
     vector<int> path;
     void dfs(vector<int> &candidates, int target, int id)
     {
-        if (target == 0)
-            res.emplace_back(path);
-        if (target <= 0)
-            return;
+        if (target == 0) res.emplace_back(path);
+        if (target <= 0) return;
         int sz = candidates.size();
         for (int i = id; i < sz; ++i)
         {
