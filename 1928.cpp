@@ -19,8 +19,8 @@ bool done[maxn][maxn];int d[maxn][maxn];
 
 void AddEdge(int from,int to,int dist,int tim)
 {
-    edge.push_back(Edge(from,to,dist,tim));
-    G[from].push_back(edge.size()-1);
+    edge.emplace_back(Edge(from,to,dist,tim));
+    G[from].emplace_back(edge.size()-1);
 }
 class Solution {
 public:
