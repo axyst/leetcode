@@ -1,4 +1,4 @@
 .idea/*
 .vscode/*
-.gitignore
-.gitattributes
+*.gitignore
+*.gitattributes
