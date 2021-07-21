@@ -1,8 +1,8 @@
 class Solution {
 public:
     string customSortString(string order, string str) {
-        map<char,int>mp;
-        map<char,int>cnt;
+        unordered_map<char,int>mp;
+        unordered_map<char,int>cnt;
         for(int i=0;i<str.size();i++)
         {
             cnt[str[i]]++;

@@ -4,8 +4,8 @@ public:
     bool isIsomorphic(string s, string t)
     {
         int sz = s.length();
-        map<char,char>mp;
-        map<char,int>used;
+        unordered_map<char,char>mp;
+        unordered_map<char,int>used;
         for(int i=0;i<sz;i++)
         {
             if(mp.find(t[i])==mp.end()&&(used.find(s[i])==used.end()))

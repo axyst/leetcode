@@ -3,7 +3,7 @@ class Solution
 public:
     vector<int> twoSum(vector<int> &nums, int target)
     {
-        map<int, int> mp;
+        unordered_map<int, int> mp;
         vector<int> ret;
         int size = nums.size();
         for (int i = 0; i < size; ++i)
