@@ -4,32 +4,25 @@ class Solution
 public:
     vector<vector<int>> threeSum(vector<int> &nums)
     {
-        vector<vector<int>> ret;
         sort(nums.begin(), nums.end());
-        if (!nums.empty() && nums.back() < 0)
-            return {};
-        for (int k = 0; k < nums.size(); ++k)
+        vector<vector<int>> ret;
+        int len = nums.size();
+        for (int i = 0; i < len - 2; i++)
         {
-            if (nums[k] > 0) break;
-            if (k > 0 && nums[k] == nums[k - 1])
-                continue;
-            int target = 0 - nums[k];
-            int i = k + 1, j = nums.size() - 1;
-            while (i < j)
+            if (i > 0)
+                while (i < len - 2 && nums[i] == nums[i - 1])
+                    i++;
+            int j = len - 1;
+            for (int k = i + 1; k < len - 1; k++)
             {
-                if (nums[i] + nums[j] == target)
-                {
-                    ret.emplace_back({nums[k], nums[i], nums[j]});
-                    while (i < j && nums[i] == nums[i + 1])
-                        ++i;
-                    while (i < j && nums[j] == nums[j - 1])
-                        --j;
-                    ++i, --j;
-                }
-                else if (nums[i] + nums[j] < target)
-                    ++i;
-                else
-                    --j;
+                if (k > i + 1)
+                    while (k < len - 1 && nums[k] == nums[k - 1])
+                        k++;
+                while (k < j && nums[i] + nums[k] > -nums[j])
+                    j--;
+                if (k == j) break;
+                if (nums[i] + nums[k] == -nums[j])
+                    ret.emplace_back({nums[i], nums[k], nums[j]});
             }
         }
         return ret;
