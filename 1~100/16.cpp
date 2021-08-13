@@ -12,7 +12,7 @@ public:
             int i = k + 1, j = len - 1;
             while (i < j)
             {
-                if (abs(nums[i] + nums[j] + nums[k] - target) < abs(mn))
+                if (abs(nums[i] + nums[j] + nums[k] - target) < mn)
                 {
                     mn = abs(nums[i] + nums[j] + nums[k] - target);
                     ret = nums[i] + nums[j] + nums[k];
