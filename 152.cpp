@@ -3,8 +3,7 @@ class Solution
 public:
     int maxProduct(vector<int> &nums)
     {
-        if (nums.size() == 1)
-            return nums[0];
+        if (nums.size() == 1) return nums[0];
         int pre = nums[0];
         int pre_m = nums[0];
         int ans = nums[0];
