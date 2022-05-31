@@ -1,39 +1,53 @@
-class MinStack {
-    vector<int>* st;
+class MinStack
+{
+    vector<long> *st;
     int sz;
     int mn;
+
 public:
-    MinStack() {
-        st=new vector<int>;
-        sz=0;
-        mn = INT_MAX;
+    MinStack()
+    {
+        st = new vector<long>;
+        sz = 0;
+        mn = -1;
     }
-    
-    void push(int val) {
-        if(!sz)
+    ~MinStack()
+    {
+        delete st;
+    }
+
+    void push(int val)
+    {
+        if (!sz)
         {
-            st.push_back(0);
-            mn=val;
+            st->push_back(0);
+            mn = val;
         }
         else
         {
-            int diff = val-mn;
-            st.push_back(diff);
-            mn=min(mn,val);
+            long diff = (long)val - (long)mn;
+            st->push_back(diff);
+            mn = min(mn, val);
         }
         sz++;
     }
-    
-    void pop() {
-        st.pop_back();
-        sz--;
+
+    void pop()
+    {
+        long diff = st->at(--sz);
+        st->pop_back();
+        if (diff < 0)
+            mn -= diff;
     }
-    
-    int top() {
-        return st[sz-1]+mn;
+
+    int top()
+    {
+        long ret = (st->at(sz - 1) > 0 ? st->at(sz - 1) : 0) + mn;
+        return (int)ret;
     }
-    
-    int getMin() {
+
+    int getMin()
+    {
         return mn;
     }
 };
